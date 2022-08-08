@@ -1,11 +1,14 @@
 from fastapi import FastAPI
-from modules.database import Employee
-from modules.database import LeaveApplication
+from modules.database import Employees
+from modules.database import LeaveApplications
+from modules.models import Employee
+from modules.models import Leave
 
 app = FastAPI()
+dbLeave = LeaveApplications()
+dbEmployee = Employees()
 
-dbLeave = LeaveApplication()
-dbEmployee = Employee()
+Employee
 
 
 @app.get("/")
@@ -15,6 +18,6 @@ async def read_root():
 
 
 @app.post("/leave")
-async def capture_leave():
+async def capture_leave(leave: Leave):
 
-    return {"message": "Hello World"}
+    return {"message": "Hello World", "leave": leave}

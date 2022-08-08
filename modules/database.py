@@ -1,7 +1,7 @@
 import sqlite3
 
 
-class LeaveApplication:
+class LeaveApplications:
     def __init__(self):
         self.con = sqlite3.connect("leaveapp.db")
         self.cur = self.con.cursor()
@@ -31,7 +31,7 @@ class LeaveApplication:
         return rows
 
 
-class Employee:
+class Employees:
     def __init__(self):
         self.con = sqlite3.connect("leaveapp.db")
         self.cur = self.con.cursor()
