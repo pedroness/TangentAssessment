@@ -13,6 +13,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    env:
+      DIGITALOCEAN_DEPLOY: ${{ secrets.DIGITALOCEAN_DEPLOY }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -21,14 +23,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world! ${{ secrets.DIGITALOCEAN_DEPLOY }} | sed -e 's/\(.\)/\1 /g'
+        run: echo Hello, world! ${{ secrets.DIGITALOCEAN_DEPLOY | sed -e 's/\(.\)/\1 /g' }}
 
 
       # - name: Build container image
       #   run: docker build -t registry.digitalocean.com/torquedigital/python3 .
 
 
-      # - name: Install doctl
-      #   uses: digitalocean/action-doctl@v2
-      #   with:
-      #     token: ${{ secrets.DIGITALOCEAN_DEPLOY }}
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_DEPLOY }}
