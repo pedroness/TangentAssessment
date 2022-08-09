@@ -20,12 +20,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo Hello, world! ${{ secrets.DIGITALOCEAN_DEPLOY }}
 
       - name: Build container image
         run: docker build -t registry.digitalocean.com/torquedigital/python3 .
 
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_DEPLOY }}
+
+      # - name: Install doctl
+      #   uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{ secrets.DIGITALOCEAN_DEPLOY }}
