@@ -21,10 +21,6 @@ jobs:
       - uses: actions/checkout@v3
 
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world! ${{ secrets.DIGITALOCEAN_DEPLOY | sed -e 's/\(.\)/\1 /g' }}
-
 
       # - name: Build container image
       #   run: docker build -t registry.digitalocean.com/torquedigital/python3 .
