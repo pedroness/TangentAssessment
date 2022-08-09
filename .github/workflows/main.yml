@@ -21,8 +21,8 @@ jobs:
 
 
 
-      # - name: Build container image
-      #   run: docker build -t registry.digitalocean.com/torquedigital/python3 .
+      - name: Build container image
+        run: docker build -t registry.digitalocean.com/torquedigital/python3 .
 
 
       - name: Install doctl
@@ -30,3 +30,6 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Push image to Digital Ocean
+        run: docker push registry.digitalocean.com/torquedigital/python3
