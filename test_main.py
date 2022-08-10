@@ -34,7 +34,7 @@ def test_capture_leave():
 
 
     #valid employee no
-        response = client.post("/leave", json = {
+    response = client.post("/leave", json = {
         "employee_pk":"000000",
         "start_date":"2022-08-10",
         "end_date":"2022-08-11",
