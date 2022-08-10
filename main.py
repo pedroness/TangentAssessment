@@ -3,7 +3,14 @@ from modules.database import Employees
 from modules.database import LeaveApplications
 from modules.models import Leave
 
-app = FastAPI()
+app = FastAPI(
+    docs_url="/api/v1/docs",
+    redoc_url="/api/v1/docs",
+    title="Leave Application API",
+    description="Demo of basic Rest API for employees to log their leave for Tangent Solutions",
+    version="1.0",
+    openapi_url="/api/v1/openapi.json"
+)
 dbLeave = LeaveApplications()
 dbEmployee = Employees()
 
