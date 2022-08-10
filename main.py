@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from modules.database import Employees
 from modules.database import LeaveApplications
 from modules.models import Leave
+from modules.models import Employee
 
 app = FastAPI(
     docs_url="/api/v1/docs",
@@ -19,6 +20,22 @@ dbEmployee = Employees()
 async def read_root():
     return {"message": "Hello World"}
 
+@app.get("/employees")
+async def get_employees():
+    employees=dbEmployee.read()    
+    return employees
+
+@app.post("/employees")
+async def capture_employee(employee: Employee):
+    dbEmployee.insert(
+        (
+            employee.emp_number,
+            employee.phone_number,
+            employee.first_name,
+            employee.last_name,
+        )
+    )
+    return employee
 
 @app.post("/leave")
 async def capture_leave(leave: Leave):

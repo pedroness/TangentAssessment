@@ -54,7 +54,22 @@ class Employees:
         )
         self.con.commit()
 
+    def get_employee(self,employee_pk):
+        self.cur.execute("""SELECT * FROM employees WHERE emp_number=?""",employee_pk)
+        rows = self.cur.fetchall()
+        return rows
+
     def read(self):
         self.cur.execute("""SELECT * FROM employees""")
         rows = self.cur.fetchall()
-        return rows
+        results=[]
+        keys=["emp_number","phone_number","first_name","last_name"]
+        for val in rows:
+            results.append({
+                "emp_number":str(val[0]),
+                "phone_number":str(val[1]),
+                "first_name:":str(val[2]),
+                "last_name::":str(val[3])
+            })
+           
+        return results

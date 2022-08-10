@@ -10,6 +10,18 @@ def test_read_root():
     assert response.json() == {"message": "Hello World"}
 
 
+def test_capture_employee():
+    response = client.post("/employees", json = {
+        "emp_number":"TS00554",
+        "phone_number":"0794986977",
+        "first_name":"Pedro",
+        "last_name":"Ferreira"
+    })
+    assert response.status_code == 200
+    
+def test_get_employees():
+    response = client.get("/employees")
+    assert response.status_code == 200
 
 def test_capture_leave():
     response = client.post("/leave", json = {
