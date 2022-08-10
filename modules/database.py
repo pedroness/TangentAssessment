@@ -3,7 +3,7 @@ import sqlite3
 
 class LeaveApplications:
     def __init__(self):
-        self.con = sqlite3.connect("leaveapp.db",check_same_thread=False)
+        self.con = sqlite3.connect("db/leaveapp.db",check_same_thread=False)
         self.cur = self.con.cursor()
         self.create_table()
 
