@@ -28,7 +28,17 @@ class LeaveApplications:
     def read(self):
         self.cur.execute("""SELECT * FROM leave""")
         rows = self.cur.fetchall()
-        return rows
+        results=[]
+        for val in rows:
+            results.append({
+                "employee_pk":str(val[0]),
+                "start_date":str(val[1]),
+                "end_date":str(val[2]),
+                "days_of_leave":str(val[3]),
+                "status":str(val[4])
+            })
+           
+        return results
 
 
 class Employees:
@@ -54,7 +64,21 @@ class Employees:
         )
         self.con.commit()
 
+    def get_employee(self,employee_pk):
+        self.cur.execute("""SELECT * FROM employees WHERE emp_number=?""",(employee_pk,))
+        rows = self.cur.fetchall()
+        return rows
+
     def read(self):
         self.cur.execute("""SELECT * FROM employees""")
         rows = self.cur.fetchall()
-        return rows
+        results=[]
+        for val in rows:
+            results.append({
+                "emp_number":str(val[0]),
+                "phone_number":str(val[1]),
+                "first_name":str(val[2]),
+                "last_name":str(val[3])
+            })
+           
+        return results
