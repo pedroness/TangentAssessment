@@ -49,3 +49,8 @@ async def capture_leave(leave: Leave):
         )
     )
     return leave
+
+@app.get("/leave")
+async def get_leave():
+    leave=dbLeave.read()    
+    return leave
