@@ -18,7 +18,7 @@ def test_capture_employee():
         "last_name":"Ferreira"
     })
     assert response.status_code == 200
-    
+
 def test_get_employees():
     response = client.get("/employees")
     assert response.status_code == 200
@@ -32,6 +32,16 @@ def test_capture_leave():
     })
     assert response.status_code == 200
 
+
+    #valid employee no
+        response = client.post("/leave", json = {
+        "employee_pk":"000000",
+        "start_date":"2022-08-10",
+        "end_date":"2022-08-11",
+        "days_of_leave":"1"
+    })
+    assert response.status_code == 422
+    
     #start_date check
     response = client.post("/leave", json = {
         "employee_pk":"TS00554",

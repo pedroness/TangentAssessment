@@ -65,7 +65,7 @@ class Employees:
         self.con.commit()
 
     def get_employee(self,employee_pk):
-        self.cur.execute("""SELECT * FROM employees WHERE emp_number=?""",employee_pk)
+        self.cur.execute("""SELECT * FROM employees WHERE emp_number=?""",(employee_pk,))
         rows = self.cur.fetchall()
         return rows
 
