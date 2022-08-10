@@ -7,7 +7,7 @@ app = FastAPI(
     docs_url="/api/v1/docs",
     redoc_url="/api/v1/docs",
     title="Leave Application API",
-    description="Demo of basic Rest API for employees to log their leave for Tangent Solutions",
+    description="Tangent Solutions Interview Assignment, Rest API for employees to log their leave",
     version="1.0",
     openapi_url="/api/v1/openapi.json"
 )

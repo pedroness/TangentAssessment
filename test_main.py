@@ -8,3 +8,23 @@ def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "Hello World"}
+
+
+
+def test_capture_leave():
+    response = client.post("/leave", json = {
+        "employee_pk":"TS00554",
+        "start_date":"2022-08-10",
+        "end_date":"2022-08-10",
+        "days_of_leave":"1"
+    })
+    assert response.status_code == 200
+
+    #start_date check
+    response = client.post("/leave", json = {
+        "employee_pk":"TS00554",
+        "start_date":"2022-08-11",
+        "end_date":"2022-08-10",
+        "days_of_leave":"1"
+    })
+    assert response.status_code == 422
