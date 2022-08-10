@@ -27,6 +27,7 @@ class LeaveApplications:
 
     def read(self):
         self.cur.execute("""SELECT * FROM leave""")
+        rows = self.cur.fetchall()
         results=[]
         for val in rows:
             results.append({
