@@ -33,7 +33,7 @@ class LeaveApplications:
 
 class Employees:
     def __init__(self):
-        self.con = sqlite3.connect("leaveapp.db")
+        self.con = sqlite3.connect("db/leaveapp.db")
         self.cur = self.con.cursor()
         self.create_table()
 
