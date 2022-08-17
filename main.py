@@ -6,7 +6,7 @@ from modules.models import Employee
 
 app = FastAPI(
     docs_url="/api/v1/docs",
-    redoc_url="/api/v1/docs",
+    redoc_url="/api/v1/redocs",
     title="Leave Application API",
     description="Tangent Solutions Interview Assignment, Rest API for employees to log their leave",
     version="1.0",
@@ -20,12 +20,12 @@ dbEmployee = Employees()
 async def read_root():
     return {"message": "Hello World"}
 
-@app.get("/employees")
+@app.get("/employees",  tags=["Employees"])
 async def get_employees():
     employees=dbEmployee.read()    
     return employees
 
-@app.post("/employees")
+@app.post("/employees", tags=["Employees"])
 async def capture_employee(employee: Employee):
     dbEmployee.insert(
         (
@@ -37,7 +37,7 @@ async def capture_employee(employee: Employee):
     )
     return employee
 
-@app.post("/leave")
+@app.post("/leave", tags=["Employee Leave"])
 async def capture_leave(leave: Leave):
     dbLeave.insert(
         (
@@ -50,7 +50,7 @@ async def capture_leave(leave: Leave):
     )
     return leave
 
-@app.get("/leave")
+@app.get("/leave", tags=["Employee Leave"])
 async def get_leave():
     leave=dbLeave.read()    
     return leave
